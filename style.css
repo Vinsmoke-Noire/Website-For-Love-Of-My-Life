@@ -1,5 +1,5 @@
-/* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:wght@300;400;500&display=swap');
+/* style.css (Versi Mobile-First & Ditingkatkan) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
     --bg-start: #fff5f7;        
@@ -13,6 +13,7 @@
     --font-main: 'Poppins', sans-serif;
 }
 
+/* === PENGATURAN DASAR & LATAR BELAKANG === */
 body {
     margin: 0;
     font-family: var(--font-main);
@@ -35,14 +36,20 @@ body {
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
 
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem;
     box-sizing: border-box;
     width: 100%;
+    min-height: 100vh;
 }
 
 .main-content-wrapper {
@@ -51,16 +58,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* === GAYA KARTU MENU === */
+h1.center {
+    font-family: var(--font-script);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-secondary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
 }
 
 .card-grid {
     display: grid;
-    /* Grid yang lebih responsif: akan menjadi 1 kolom jika lebar layar tidak cukup */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    padding: 1rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
+}
+.card-grid.main-menu {
+    max-width: 500px; /* Sedikit lebih lebar untuk menu utama */
 }
 
 .card {
@@ -74,7 +95,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: popIn 0.5s ease-out backwards;
 }
-
 .card:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 15px 30px rgba(220, 150, 160, 0.3);
@@ -83,120 +103,141 @@ body {
 .card img {
     width: 100px;
     height: 100px;
-    object-fit: cover; /* Mengubah menjadi cover agar gambar mengisi ruang */
-    border-radius: 12px; /* Menambahkan sudut tumpul pada gambar */
-    margin-bottom: 0.5rem;
-    transition: transform 0.3s ease;
+    object-fit: cover;
+    border-radius: 50%; /* Membuat gambar kucing menjadi bulat */
+    margin-bottom: 1rem;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .card p {
     margin: 0;
     font-family: var(--font-script);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: var(--accent-secondary);
 }
 
-h1.center {
-    font-family: var(--font-script);
-    font-size: 2.5rem;
+/* === GAYA HALAMAN INTERAKTIF === */
+.interactive-page .subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #8d6e63; /* Cokelat yang lebih gelap sedikit */
+}
+
+.interactive-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Tombol akan pindah ke baris baru jika tidak muat */
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.interactive-btn {
+    background: var(--card-bg);
     color: var(--accent-secondary);
+    border: 2px solid var(--accent-primary);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+.interactive-btn:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-3px);
+}
+.interactive-btn.large {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+}
+
+.result-text {
+    min-height: 2.5em; /* Mencegah layout bergeser */
+    margin-top: 1rem;
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--accent-secondary);
+    animation: popIn 0.5s ease;
     text-align: center;
     padding: 0 1rem;
 }
 
-button, .back-button {
+/* === MINIGAME AREA === */
+#game-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom agar lebih besar di mobile */
+    gap: 1rem;
+    width: 100%;
+    max-width: 330px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1.33; /* Menyesuaikan rasio agar pas 4 baris */
+}
+
+.game-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.game-item:hover { transform: scale(1.1); }
+.game-item.shake { animation: shake 0.3s ease-in-out; }
+
+/* === TOMBOL KEMBALI === */
+.back-button {
     background: var(--accent-primary);
     color: white;
     border: none;
-    padding: 0.8rem 2rem;
-    margin: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    margin-top: 2rem;
     border-radius: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    font-family: var(--font-main);
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     box-shadow: 0 4px 10px rgba(244, 143, 177, 0.4);
 }
-
-button:hover, .back-button:hover {
+.back-button:hover {
     background: var(--accent-secondary);
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
 }
 
-/* === CSS PLAYER MUSIK (MOBILE-FIRST) === */
-.player-container {
-  background: #282828;
-  max-width: 380px;
-  width: 100%; /* Menggunakan lebar penuh pada mobile */
-  padding: 25px;
-  border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-}
 
-.player-header { display: flex; align-items: center; gap: 15px; }
-#player-album-art { width: 60px; height: 60px; border-radius: 8px; }
-.song-info { flex-grow: 1; }
-.song-info h2 { margin: 0; font-size: 1.1rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.song-info p { margin: 4px 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
-.airplay-icon { color: rgba(255,255,255,0.8); font-size: 22px; }
-
-.progress-container { margin: 20px 0; }
-.progress-bar-wrapper { background: #404040; height: 5px; border-radius: 2.5px; cursor: pointer; }
-.progress-bar { background: #fff; width: 0%; height: 100%; border-radius: 2.5px; transition: width 0.1s linear; }
-.time-stamps { display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 5px; }
-
-.lyrics-container { text-align: center; margin: 30px 0; min-height: 45px; }
-#player-lyrics { font-size: 1.5rem; font-weight: bold; color: #fff; transition: opacity 0.3s ease-in-out; }
-.lyric-fade { opacity: 0; }
-
-.controls-container { display: flex; justify-content: center; align-items: center; gap: 30px; }
-.control-btn { background: none; border: none; cursor: pointer; padding: 0; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: transform 0.2s; width: 50px; height: 50px; }
-.control-btn:hover { transform: scale(1.1); }
-.control-btn.play-btn { width: 65px; height: 65px; background-color: rgba(255, 255, 255, 0.1); }
-.control-btn i { color: #fff; font-size: 20px; }
-.control-btn.play-btn i { font-size: 28px; }
-.control-btn.play-btn #pause-icon { font-size: 26px; }
-
-.volume-container { display: flex; align-items: center; gap: 10px; margin-top: 25px; }
-.volume-icon { color: rgba(255,255,255,0.5); font-size: 20px; }
-#volume-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; background: #404040; border-radius: 2.5px; outline: none; }
-#volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 15px; height: 15px; background: #fff; border-radius: 50%; cursor: pointer; }
-.hidden { display: none; }
-
-/* === PENYESUAIAN UNTUK MOBILE === */
-@media screen and (max-width: 600px) {
-    .home {
-        padding: 1rem;
-        align-items: flex-start; /* Agar konten tidak terlalu terpusat ke tengah saat scroll */
-    }
-
+/* === PENYESUAIAN UNTUK LAYAR LEBIH BESAR (TABLET & DESKTOP) === */
+@media screen and (min-width: 768px) {
     h1.center {
-        font-size: 2.2rem;
-        padding: 1rem 0.5rem;
+        font-size: 2.8rem;
     }
 
     .card-grid {
-        gap: 1rem;
-        padding: 0.5rem;
+        gap: 2rem;
+        max-width: 600px;
     }
 
-    .card {
-        padding: 1rem 0.8rem;
+    .card-grid.main-menu {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 800px;
     }
 
-    .back-button {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
+    .card p {
+        font-size: 1.5rem;
     }
 
-    #player-lyrics {
-        font-size: 1.3rem; /* Sedikit lebih kecil agar pas */
+    #game-area {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 400px;
+        aspect-ratio: 1 / 1;
+    }
+
+    .result-text {
+        font-size: 1.8rem;
     }
 }
