@@ -6,18 +6,18 @@
   <title>Daily Check-In</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home">
   <div class="particle-container"></div>
 
-  <div class="center">
-    <h1>📅 Daily Check-In</h1>
-    <p>Gimana perasaan kamu hari ini?</p>
-    <div>
-      <button onclick="checkin('senang')">😊 Senang</button>
-      <button onclick="checkin('sedih')">😢 Sedih</button>
-      <button onclick="checkin('rindu')">🥺 Rindu</button>
-      <button onclick="checkin('lelah')">😔 Capek</button>
-      <button onclick="checkin('takut')">😟 Takut</button>
+  <div class="main-content-wrapper interactive-page">
+    <h1 class="center">📅 Daily Check-In</h1>
+    <p class="subtitle">Gimana perasaan kamu hari ini?</p>
+    <div class="interactive-buttons">
+      <button class="interactive-btn" onclick="checkin('senang')">😊 Senang</button>
+      <button class="interactive-btn" onclick="checkin('sedih')">😢 Sedih</button>
+      <button class="interactive-btn" onclick="checkin('rindu')">🥺 Rindu</button>
+      <button class="interactive-btn" onclick="checkin('lelah')">😔 Capek</button>
+      <button class="interactive-btn" onclick="checkin('takut')">😟 Takut</button>
     </div>
     <p id="checkin-result" class="result-text"></p>
     <a href="interactive.html" class="back-button">⬅️ Kembali</a>
@@ -35,7 +35,6 @@
         rindu: 'Aku juga kangen banget sama kamu 😢💌',
         lelah: 'Semangatt yaa, Istirahat yang cukuppp, aku sellu disini buat nyemangatin kamu kokk 🫂',
         takut: 'Kamu takut yaa, jangan khawatir kamu pasti bisaa, aku selalu siap kok melindungi kamu 💪🏻'
-
       };
       output.style.animation = 'none';
       output.offsetHeight;
