@@ -6,6 +6,7 @@
     <title>Surat Cinta</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* CSS ini telah disempurnakan agar sepenuhnya responsif */
         * {
             margin: 0;
             padding: 0;
@@ -20,30 +21,29 @@
             position: relative;
         }
 
-        /* Floating hearts animation */
         .heart {
             position: absolute;
             color: rgba(255, 182, 193, 0.6);
             font-size: 20px;
-            animation: float 6s ease-in-out infinite;
+            animation: float 10s ease-in-out infinite;
             pointer-events: none;
         }
 
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 24px; }
         .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; font-size: 18px; }
         .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
-        .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 4s; font-size: 22px; }
         .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
-        .heart:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 1.5s; font-size: 16px; }
         .heart:nth-child(8) { left: 80%; animation-delay: 2.5s; }
-        .heart:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 3.5s; font-size: 25px; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
@@ -54,7 +54,6 @@
             z-index: 10;
         }
 
-        /* Envelope Styles */
         .envelope-container {
             display: flex;
             justify-content: center;
@@ -90,8 +89,7 @@
         }
 
         .envelope-body {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: linear-gradient(145deg, #ff69b4, #ff1493);
             border-radius: 10px;
             position: relative;
@@ -105,16 +103,13 @@
 
         .envelope-flap {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
+            top: 0; left: 0;
+            width: 100%; height: 100px;
             background: linear-gradient(145deg, #ff1493, #dc143c);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
             transform-origin: top center;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
-            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
         }
 
         .envelope.opened .envelope-flap {
@@ -124,8 +119,6 @@
         .envelope-heart {
             font-size: 3rem;
             animation: heartBeat 1.5s ease-in-out infinite;
-            margin-bottom: 10px;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
         }
 
         @keyframes heartBeat {
@@ -138,15 +131,8 @@
             font-family: 'Dancing Script', cursive;
             font-size: 1.2rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: textGlow 2s ease-in-out infinite;
         }
 
-        @keyframes textGlow {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; text-shadow: 2px 2px 8px rgba(255,255,255,0.5); }
-        }
-
-        /* Letter Wrapper */
         .letter-wrapper {
             opacity: 0;
             transform: translateY(50px);
@@ -167,272 +153,81 @@
             padding: 50px;
             margin: 20px 0;
             position: relative;
+            border: 1px solid rgba(255, 182, 193, 0.2);
             animation: slideIn 1.5s ease-out;
-            border: 2px solid rgba(255, 182, 193, 0.2);
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        .letter-header {
-            text-align: center;
-            margin-bottom: 40px;
-            animation: fadeInDown 2s ease-out 0.5s both;
-        }
-
+        
+        .letter-header { text-align: center; margin-bottom: 40px; }
         .letter-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #d63384;
+            font-size: 3.5rem; color: #d63384;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3);
-            animation: pulse 2s ease-in-out infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .letter-subtitle {
-            font-size: 1.2rem;
-            color: #e91e63;
-            font-weight: 300;
-            font-style: italic;
-        }
-
-        .letter-content {
-            line-height: 1.8;
-            color: #6c5ce7;
-            font-size: 1.1rem;
-            text-align: justify;
-            animation: fadeInUp 2s ease-out 1s both;
-        }
-
-        .letter-content p {
-            margin-bottom: 25px;
-            animation: typewriter 3s ease-out forwards;
-            opacity: 0;
-        }
-
-        .letter-content p:nth-child(1) { animation-delay: 1.5s; }
-        .letter-content p:nth-child(2) { animation-delay: 2.5s; }
-        .letter-content p:nth-child(3) { animation-delay: 3.5s; }
-        .letter-content p:nth-child(4) { animation-delay: 4.5s; }
-
-        @keyframes typewriter {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .signature {
-            text-align: right;
-            margin-top: 40px;
-            animation: fadeIn 2s ease-out 5s both;
-        }
-
-        .signature-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: #d63384;
-            margin-bottom: 10px;
-        }
-
-        .signature-name {
-            font-size: 1.1rem;
-            color: #e91e63;
-            font-weight: 500;
-        }
-
-        .decorative-border {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px solid transparent;
-            border-image: linear-gradient(45deg, #ff6b9d, #ffc0cb, #ff69b4, #ff1493) 1;
-            border-radius: 15px;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
+        .letter-subtitle { font-size: 1.2rem; color: #e91e63; font-weight: 300; }
+        .letter-content { line-height: 1.8; color: #5a4b8b; font-size: 1.1rem; }
+        .letter-content p { margin-bottom: 25px; }
+        
+        .signature { text-align: right; margin-top: 40px; }
+        .signature-text { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #d63384; }
+        .signature-name { font-size: 1.1rem; color: #e91e63; font-weight: 500; }
 
         .love-quote {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 192, 203, 0.1));
-            border-radius: 15px;
-            border-left: 5px solid #ff69b4;
-            animation: slideInRight 2s ease-out 6s both;
+            text-align: center; margin: 40px 0; padding: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px; border-left: 5px solid #ff69b4;
         }
-
-        .quote-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #d63384;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .quote-author {
-            font-size: 1rem;
-            color: #e91e63;
-            font-weight: 400;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .letter-envelope {
-                padding: 30px 25px;
-                margin: 10px;
-            }
-            
-            .letter-title {
-                font-size: 2.5rem;
-            }
-            
-            .letter-content {
-                font-size: 1rem;
-            }
-            
-            .quote-text {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* Interactive hover effects */
-        .letter-envelope:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(255, 182, 193, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .letter-title:hover {
-            color: #ff1493;
-            transition: color 0.3s ease;
-        }
-
-        /* Back Button Styles */
+        .quote-text { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #d63384; }
+        .quote-author { font-size: 1rem; color: #e91e63; }
+        
         .back-button {
-            position: fixed;
-            top: 30px;
-            left: 30px;
+            position: fixed; top: 20px; left: 20px;
             background: linear-gradient(145deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            transform: translateX(-50px);
+            color: white; border: none; border-radius: 50px;
+            padding: 15px 25px; font-family: 'Poppins', sans-serif;
+            font-size: 1rem; font-weight: 500;
+            cursor: pointer; box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+            transition: all 0.3s ease; z-index: 1000;
+            display: flex; align-items: center; gap: 8px;
+            opacity: 0; transform: translateX(-50px);
             pointer-events: none;
         }
-
-        .back-button.show {
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: all;
-        }
-
+        .back-button.show { opacity: 1; transform: translateX(0); pointer-events: all; }
         .back-button:hover {
             background: linear-gradient(145deg, #ff1493, #dc143c);
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4);
         }
+        .back-arrow { font-size: 1.2rem; }
 
-        .back-button:active {
-            transform: translateY(0);
-        }
-
-        .back-arrow {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .back-button:hover .back-arrow {
-            transform: translateX(-3px);
+        /* Penyesuaian untuk Tampilan Mobile */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .envelope { width: 90vw; max-width: 280px; height: auto; aspect-ratio: 3/2; }
+            .letter-envelope { padding: 40px 25px; margin: 10px; }
+            .letter-title { font-size: 2.8rem; }
+            .letter-subtitle { font-size: 1.1rem; }
+            .letter-content { font-size: 1rem; line-height: 1.7; }
+            .signature-text { font-size: 1.8rem; }
+            .signature-name { font-size: 1rem; }
+            .love-quote { padding: 25px; }
+            .quote-text { font-size: 1.5rem; }
+            .back-button { top: 15px; left: 15px; padding: 12px 20px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating hearts -->
-    <div class="heart">💖</div>
-    <div class="heart">💕</div>
-    <div class="heart">💗</div>
-    <div class="heart">💓</div>
-    <div class="heart">💖</div>
-    <div class="heart">💕</div>
-    <div class="heart">💗</div>
-    <div class="heart">💓</div>
-    <div class="heart">💖</div>
+    <div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div><div class="heart">💓</div><div class="heart">💖</div><div class="heart">💕</div><div class="heart">💗</div><div class="heart">💓</div><div class="heart">💖</div>
 
-    <!-- Back Button -->
     <button id="backButton" class="back-button" onclick="goBackToEnvelope()">
         <span class="back-arrow">←</span>
         <span>Kembali</span>
     </button>
 
-    <!-- Envelope Container -->
     <div id="envelopeContainer" class="envelope-container">
         <div id="envelope" class="envelope" onclick="openEnvelope()">
             <div class="envelope-flap"></div>
@@ -443,12 +238,9 @@
         </div>
     </div>
 
-    <!-- Letter Container (hidden initially) -->
     <div id="letterWrapper" class="letter-wrapper">
         <div class="container">
             <div class="letter-envelope">
-                <div class="decorative-border"></div>
-                
                 <div class="letter-header">
                     <h1 class="letter-title">Untuk Tiara</h1>
                     <p class="letter-subtitle">A Letter from my Heart</p>
@@ -456,11 +248,8 @@
 
                 <div class="letter-content">
                     <p>Awalnya, saat pertama kali aku melihat kamu di kelas 7 semester 2, sejujurnya… kamu cuma jadi seseorang yang ada dikelasku mungkin lebih ke npc aja menurutku waktu itu, biasa aja. No special feelings, bahkan dulu aku inget pas pelajaran seni budaya, membuat bunga, kamu buat sendirian, yang aku lihat kelompokmu cuma main-main, aku ngerasa kasihan sih waktu itu, cuman yaa ke distract sama tugas kelompokku juga, jadi aku ga sempat bantuuin sorry yaah.</p>
-
                     <p>Terusss, kita naik deh ke kelas 8, aku mulai notice sesuatu. You were different. Kamu baik bangettt sama orang, ramah, cantik, apalagi pinterr, komplittt semuanya. Awalnya aku cuma pura-pura suka ehhh, malah jadi suka beneran.</p>
-
                     <p>Pelan-pelan, aku mulai berubah. Bukan karena kamu minta, tapi karena aku ingin. I wanted to be better not just for myself, but for you. Aku belajar coding, aku berhenti ngelakuin hal-hal burukk, aku coba perbaiki sikap, Nyelesaiin hafalan juz 30 supaya wisuda sama-sama, dan lain-lain. Semua kulakukan karena aku ingin suatu hari nanti, kalau ternyata kamu suka juga sama aku, aku pantas xixixixii.</p>
-
                     <p>Tiba-tiba tahun iniiii, akuu tauu ternyata kamu juga suka balikkk. SUMPAHH RASANYA GA NYANGKA BANGETT, perasaan yang aku pendam ternyata dapat balasann. Teruss udahh deh sampai sekarang aku jadi kecintaan banget sama kamu, dalam artiAN LOVE YAAWWWW BUKAN L̶U̶S̶T̶ . So, kalau kamu tanya: Kenapa kamu suka aku? Jawabannya sederhana: Karena kamu, just by being you, made me want to become someone better.</p>
                 </div>
 
@@ -484,36 +273,25 @@
             const letterWrapper = document.getElementById('letterWrapper');
             const backButton = document.getElementById('backButton');
             
-            // Add opened class to envelope for flap animation
             envelope.classList.add('opened');
             
-            // After flap animation, hide envelope and show letter
             setTimeout(() => {
                 envelopeContainer.classList.add('hide');
                 
                 setTimeout(() => {
                     letterWrapper.classList.add('show');
+                    backButton.classList.add('show');
                     
-                    // Show back button
                     setTimeout(() => {
-                        backButton.classList.add('show');
-                    }, 300);
-                    
-                    // Smooth scroll to the letter after it appears
-                    setTimeout(() => {
-                        letterWrapper.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        letterWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 200);
                 }, 400);
             }, 800);
         }
 
         function goBackToEnvelope() {
-            // Navigate to another page - you can change this URL
             window.location.href = 'index.html';
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968cb66997a64f50',t:'MTc1NDEyODY2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
