@@ -6,12 +6,12 @@
   <title>Cute Love Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home">
   <div class="particle-container"></div>
 
-  <div class="center">
-    <h1>🎮 Temukan Miaww!</h1>
-    <p>Klik gambar Miaww yang tersembunyi di antara bunga!</p>
+  <div class="main-content-wrapper interactive-page">
+    <h1 class="center">🎮 Temukan Miaww!</h1>
+    <p class="subtitle">Klik gambar Miaww yang tersembunyi di antara bunga!</p>
     <div id="game-area"></div>
     <p id="game-message" class="result-text"></p>
     <a href="interactive.html" class="back-button">⬅️ Kembali</a>
@@ -23,9 +23,10 @@
     const gameArea = document.getElementById('game-area');
     const message = document.getElementById('game-message');
     const sound = document.getElementById('bunny-sound');
-    const bunnyIndex = Math.floor(Math.random() * 12);
+    const totalItems = 12;
+    const bunnyIndex = Math.floor(Math.random() * totalItems);
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < totalItems; i++) {
       const el = document.createElement('img');
       el.src = 'assets/flower.jpg';
       el.className = 'game-item';
@@ -36,13 +37,13 @@
         message.style.animation = null; 
         if (parseInt(el.dataset.index) === bunnyIndex) {
           el.src = 'assets/flowercat.jpg';
-          el.style.transform = 'scale(1.2)'; // Efek pop
+          el.style.transform = 'scale(1.2)';
           message.innerText = 'Yess, kamu nemu Miaww! 🐱💗';
           if (sound) sound.play();
         } else {
           message.innerText = 'Bukan di sini, coba lagi 😝';
-          el.style.transform = 'translateX(5px)'; // Efek goyang
-          setTimeout(() => { el.style.transform = 'translateX(0)'; }, 200);
+          el.classList.add('shake');
+          setTimeout(() => { el.classList.remove('shake'); }, 300);
         }
       }
       gameArea.appendChild(el);
