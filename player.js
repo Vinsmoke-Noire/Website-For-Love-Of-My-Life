@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
   { time: 51.0, text: '덧칠되어 (deoschildoeeo)' },
   { time: 57.1, text: '...' },
   { time: 60.5, text: '우, 발이 닿을 만큼 굳어지면 (u, bal-i dah-eul mankeum gud-eojimyeon)' },
-  { time: 109.2, text: 'Making a song for you' },
+  { time: 71.2, text: '아, 비로소 내 세상이 되어줘 (a, biloso nae sesang-i doeeojwo)' },
   { time: 114.9, text: 'This is not a dream' },
   { time: 120.2, text: 'I\'ll be your light, babe' },
   { time: 126.1, text: 'I see your love, I see your love, I see your love' },
