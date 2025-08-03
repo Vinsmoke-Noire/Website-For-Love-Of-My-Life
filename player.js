@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
   { time: 229.0, text: 'You\'re the only one who gives me love'},
   { time: 236.0, text: 'So how can my day be bad?' },
   { time: 243.0, text: 'It\'s a day for you' },
-  { time: 1621, text: '[Outro]' }
+  { time: 150.0, text: '[Outro]' }
 ]
         },
         'calla': {
