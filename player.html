@@ -4,64 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Now Playing</title>
-  <!-- Menambahkan Font Awesome dari CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="home">
   <div class="particle-container"></div>
 
-  <div class="player-container">
-    <!-- Header: Album Art & Info -->
-    <div class="player-header">
-      <img id="player-album-art" src="" alt="Album Art">
-      <div class="song-info">
-        <h2 id="player-title">Nama Lagu</h2>
-        <p id="player-artist">Nama Artis</p>
+  <div class="main-content-wrapper">
+    <div class="player-container">
+      <!-- Header: Album Art & Info -->
+      <div class="player-header">
+        <img id="player-album-art" src="" alt="Album Art">
+        <div class="song-info">
+          <h2 id="player-title">Nama Lagu</h2>
+          <p id="player-artist">Nama Artis</p>
+        </div>
+        <i class="airplay-icon fas fa-headphones-alt"></i>
       </div>
-      <!-- Ikon Picture-in-picture (diganti) -->
-      <i class="airplay-icon fas fa-window-maximize"></i>
-    </div>
 
-    <!-- Progress Bar -->
-    <div class="progress-container">
-      <div class="progress-bar-wrapper" id="progress-bar-wrapper">
-        <div class="progress-bar" id="progress-bar"></div>
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar-wrapper" id="progress-bar-wrapper">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-stamps">
+          <span id="current-time">0:00</span>
+          <span id="total-duration">0:00</span>
+        </div>
       </div>
-      <div class="time-stamps">
-        <span id="current-time">0:00</span>
-        <span id="total-duration">0:00</span>
+
+      <!-- Lyrics -->
+      <div class="lyrics-container">
+        <p id="player-lyrics">...</p>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls-container">
+        <button class="control-btn" id="prev-btn">
+          <i class="fas fa-backward-step"></i>
+        </button>
+        <button class="control-btn play-btn" id="play-pause-btn">
+          <i id="play-icon" class="fas fa-play"></i>
+          <i id="pause-icon" class="fas fa-pause hidden"></i>
+        </button>
+        <button class="control-btn" id="next-btn">
+          <i class="fas fa-forward-step"></i>
+        </button>
+      </div>
+
+      <!-- Volume -->
+      <div class="volume-container">
+        <i class="volume-icon fas fa-volume-low"></i>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.7">
+        <i class="volume-icon fas fa-volume-high"></i>
       </div>
     </div>
 
-    <!-- Lyrics -->
-    <div class="lyrics-container">
-      <p id="player-lyrics">...</p>
-    </div>
-
-    <!-- Controls -->
-    <div class="controls-container">
-      <button class="control-btn" id="prev-btn">
-        <i class="fas fa-backward-step"></i>
-      </button>
-      <button class="control-btn play-btn" id="play-pause-btn">
-        <i id="play-icon" class="fas fa-play"></i>
-        <i id="pause-icon" class="fas fa-pause hidden"></i>
-      </button>
-      <button class="control-btn" id="next-btn">
-        <i class="fas fa-forward-step"></i>
-      </button>
-    </div>
-
-    <!-- Volume -->
-    <div class="volume-container">
-      <i class="volume-icon fas fa-volume-low"></i>
-      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.7">
-      <i class="volume-icon fas fa-volume-high"></i>
-    </div>
+    <a href="musik.html" class="back-button" style="margin-top:2rem;">⬅️ Kembali ke Playlist</a>
   </div>
-
-  <a href="musik.html" class="back-button" style="margin-top:2rem;">⬅️ Kembali ke Playlist</a>
   
   <audio id="audio-player"></audio>
   <script src="particles.js"></script>
