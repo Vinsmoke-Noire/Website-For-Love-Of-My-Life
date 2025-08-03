@@ -1,13 +1,13 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:wght@300;400;500&display=swap');
 
 :root {
-    --bg-start: #fff5f7;        /* Pink sangat muda */
-    --bg-end: #fde4ea;          /* Pink lembut */
-    --accent-primary: #f48fb1;  /* Pink untuk tombol */
-    --accent-secondary: #e91e63;/* Pink lebih tua untuk teks & hover */
-    --text-dark: #6d4c41;       /* Cokelat lembut untuk teks utama */
-    --card-bg: rgba(255, 255, 255, 0.8);
+    --bg-start: #fff5f7;        
+    --bg-end: #fde4ea;          
+    --accent-primary: #f48fb1;  
+    --accent-secondary: #e91e63;
+    --text-dark: #6d4c41;       
+    --card-bg: rgba(255, 255, 255, 0.85);
     --shadow: 0 10px 25px rgba(220, 150, 160, 0.2);
     --font-script: 'Dancing Script', cursive;
     --font-main: 'Poppins', sans-serif;
@@ -23,7 +23,6 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Latar Belakang Partikel Hati */
 .particle-container {
     position: fixed;
     top: 0;
@@ -34,45 +33,8 @@ body {
     z-index: -1;
 }
 
-.particle {
-    position: absolute;
-    background-color: var(--accent-primary);
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: float 15s ease-in-out infinite;
-    /* Efek bentuk hati dari satu div */
-    transform: rotate(-45deg);
-}
-.particle::before,
-.particle::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-    border-radius: 50%;
-}
-.particle::before { top: -50%; }
-.particle::after { left: 50%; }
-
-
-/* Animasi Global */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes float {
-    0% { transform: translateY(0) rotate(-45deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
-}
-
-@keyframes popIn {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
 
 .home {
     display: flex;
@@ -80,15 +42,25 @@ body {
     align-items: center;
     padding: 2rem;
     box-sizing: border-box;
+    width: 100%;
+}
+
+.main-content-wrapper {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 450px;
+    /* Grid yang lebih responsif: akan menjadi 1 kolom jika lebar layar tidak cukup */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
     width: 100%;
+    max-width: 500px;
 }
 
 .card {
@@ -100,14 +72,8 @@ body {
     color: inherit;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: popIn 0.5s ease-out backwards; /* Animasi saat muncul */
+    animation: popIn 0.5s ease-out backwards;
 }
-
-/* Staggered animation untuk kartu */
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
 
 .card:hover {
     transform: translateY(-10px) scale(1.05);
@@ -115,15 +81,12 @@ body {
 }
 
 .card img {
-    max-width: 100%;
+    width: 100px;
     height: 100px;
-    object-fit: contain;
+    object-fit: cover; /* Mengubah menjadi cover agar gambar mengisi ruang */
+    border-radius: 12px; /* Menambahkan sudut tumpul pada gambar */
     margin-bottom: 0.5rem;
     transition: transform 0.3s ease;
-}
-
-.card:hover img {
-    transform: scale(1.1);
 }
 
 .card p {
@@ -134,18 +97,12 @@ body {
     color: var(--accent-secondary);
 }
 
-.center {
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2rem;
-}
-
 h1.center {
     font-family: var(--font-script);
     font-size: 2.5rem;
     color: var(--accent-secondary);
+    text-align: center;
+    padding: 0 1rem;
 }
 
 button, .back-button {
@@ -171,43 +128,11 @@ button:hover, .back-button:hover {
     box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
 }
 
-.result-text {
-    min-height: 2em; /* Mencegah layout bergeser */
-    margin-top: 2rem;
-    font-family: var(--font-script);
-    font-size: 1.5rem;
-    color: var(--accent-secondary);
-    animation: fadeIn 0.5s ease;
-}
-
-#game-area {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.game-item {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.game-item:hover {
-    transform: scale(1.1);
-}
-
-/* CSS untuk Player Musik (Gaya Modern dengan Font Awesome) */
+/* === CSS PLAYER MUSIK (MOBILE-FIRST) === */
 .player-container {
   background: #282828;
   max-width: 380px;
-  width: 90%;
+  width: 100%; /* Menggunakan lebar penuh pada mobile */
   padding: 25px;
   border-radius: 30px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.3);
@@ -215,175 +140,63 @@ button:hover, .back-button:hover {
   font-family: 'Poppins', sans-serif;
 }
 
-.player-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+.player-header { display: flex; align-items: center; gap: 15px; }
+#player-album-art { width: 60px; height: 60px; border-radius: 8px; }
+.song-info { flex-grow: 1; }
+.song-info h2 { margin: 0; font-size: 1.1rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-info p { margin: 4px 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.airplay-icon { color: rgba(255,255,255,0.8); font-size: 22px; }
 
-#player-album-art {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
+.progress-container { margin: 20px 0; }
+.progress-bar-wrapper { background: #404040; height: 5px; border-radius: 2.5px; cursor: pointer; }
+.progress-bar { background: #fff; width: 0%; height: 100%; border-radius: 2.5px; transition: width 0.1s linear; }
+.time-stamps { display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 5px; }
 
-.song-info h2 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
+.lyrics-container { text-align: center; margin: 30px 0; min-height: 45px; }
+#player-lyrics { font-size: 1.5rem; font-weight: bold; color: #fff; transition: opacity 0.3s ease-in-out; }
+.lyric-fade { opacity: 0; }
 
-.song-info p {
-  margin: 4px 0 0;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-}
+.controls-container { display: flex; justify-content: center; align-items: center; gap: 30px; }
+.control-btn { background: none; border: none; cursor: pointer; padding: 0; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: transform 0.2s; width: 50px; height: 50px; }
+.control-btn:hover { transform: scale(1.1); }
+.control-btn.play-btn { width: 65px; height: 65px; background-color: rgba(255, 255, 255, 0.1); }
+.control-btn i { color: #fff; font-size: 20px; }
+.control-btn.play-btn i { font-size: 28px; }
+.control-btn.play-btn #pause-icon { font-size: 26px; }
 
-.airplay-icon {
-  color: rgba(255,255,255,0.8); /* Mengganti 'fill' */
-  font-size: 24px; /* Menentukan ukuran ikon */
-}
+.volume-container { display: flex; align-items: center; gap: 10px; margin-top: 25px; }
+.volume-icon { color: rgba(255,255,255,0.5); font-size: 20px; }
+#volume-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; background: #404040; border-radius: 2.5px; outline: none; }
+#volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 15px; height: 15px; background: #fff; border-radius: 50%; cursor: pointer; }
+.hidden { display: none; }
 
-.progress-container {
-  margin: 20px 0;
-}
-
-.progress-bar-wrapper {
-  background: #404040;
-  height: 5px;
-  border-radius: 2.5px;
-  cursor: pointer;
-}
-
-.progress-bar {
-  background: #fff;
-  width: 0%;
-  height: 100%;
-  border-radius: 2.5px;
-  transition: width 0.1s linear;
-}
-
-.time-stamps {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.6);
-  margin-top: 5px;
-}
-
-.lyrics-container {
-  text-align: center;
-  margin: 35px 0;
-  min-height: 45px;
-}
-
-#player-lyrics {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #fff;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.lyric-fade {
-  opacity: 0;
-}
-
-.controls-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.control-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.2s, box-shadow 0.3s;
-  width: 50px;
-  height: 50px;
-}
-
-.control-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.control-btn.play-btn {
-  width: 65px;
-  height: 65px;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 25px 5px rgba(244, 143, 177, 0.2);
-}
-
-.control-btn.play-btn:hover {
-    box-shadow: 0 0 30px 8px rgba(244, 143, 177, 0.3);
-}
-
-/* Mengubah selector dari 'svg' menjadi 'i' */
-.control-btn i {
-  color: #fff; /* Mengganti 'fill' */
-  font-size: 20px; /* Menentukan ukuran ikon */
-  line-height: 1; /* Untuk alignment vertikal yang lebih baik */
-}
-
-.control-btn.play-btn i {
-  font-size: 28px; /* Menentukan ukuran ikon play/pause */
-}
-
-/* Pause icon perlu sedikit penyesuaian posisi */
-.control-btn.play-btn #pause-icon {
-  font-size: 26px;
-}
-
-
-.volume-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 25px;
-}
-
-.volume-icon {
-  color: rgba(255,255,255,0.5); /* Mengganti 'fill' */
-  font-size: 20px; /* Menentukan ukuran ikon */
-}
-
-#volume-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  background: #404040;
-  border-radius: 2.5px;
-  outline: none;
-}
-
-#volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-/* Akhir dari CSS Player Musik */
-
+/* === PENYESUAIAN UNTUK MOBILE === */
 @media screen and (max-width: 600px) {
-    .card-grid {
-        grid-template-columns: 1fr;
+    .home {
+        padding: 1rem;
+        align-items: flex-start; /* Agar konten tidak terlalu terpusat ke tengah saat scroll */
     }
+
     h1.center {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .card-grid {
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .card {
+        padding: 1rem 0.8rem;
+    }
+
+    .back-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    #player-lyrics {
+        font-size: 1.3rem; /* Sedikit lebih kecil agar pas */
     }
 }
