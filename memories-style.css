@@ -1,0 +1,53 @@
+/* style.css */
+
+/* Mengatur dasar halaman */
+body.home {
+  margin: 0;
+  min-height: 100vh; /* Memastikan body memenuhi seluruh tinggi layar */
+  overflow: hidden; /* Mencegah scroll bar yang tidak diinginkan */
+  
+  /* Ini adalah bagian PENTING untuk menengahkan konten */
+  display: flex;
+  justify-content: center; /* Menengahkan secara horizontal */
+  align-items: center; /* Menengahkan secara vertikal */
+
+  /* Warna latar belakang jika partikel gagal dimuat */
+  background-color: #1a0524;
+}
+
+/* Mengatur agar partikel berada di lapisan paling belakang */
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Kunci: menempatkan partikel di belakang semua konten lain */
+}
+
+/* Wadah untuk konten utama (GIF dan teks) */
+.center-content {
+  text-align: center; /* Memastikan teks di dalamnya juga rata tengah */
+  z-index: 1; /* Memastikan konten ini di atas partikel */
+  padding: 20px;
+}
+
+/* Mengatur ukuran dan tampilan GIF */
+.emotional-gif {
+  max-width: 200px; /* Atur ukuran maksimum GIF */
+  width: 100%;
+  height: auto;
+  border-radius: 15px; /* Memberi sudut yang sedikit melengkung */
+  margin-bottom: 20px; /* Memberi jarak antara GIF dan teks di bawahnya */
+  box-shadow: 0 0 25px rgba(255, 179, 247, 0.4); /* Efek bayangan bercahaya */
+}
+
+/* Mengatur gaya teks kustom Anda */
+.custom-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.6rem; /* Ukuran font */
+  color: #f0e6f7; /* Warna teks yang lembut */
+  text-shadow: 0 0 10px rgba(255, 179, 247, 0.8); /* Efek cahaya pada teks agar mudah dibaca */
+  max-width: 600px;
+  line-height: 1.5; /* Jarak antar baris jika teksnya panjang */
+}

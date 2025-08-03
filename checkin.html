@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Check-In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="particle-container"></div>
+
+  <div class="center">
+    <h1>📅 Daily Check-In</h1>
+    <p>Gimana perasaan kamu hari ini?</p>
+    <div>
+      <button onclick="checkin('senang')">😊 Senang</button>
+      <button onclick="checkin('sedih')">😢 Sedih</button>
+      <button onclick="checkin('rindu')">🥺 Rindu</button>
+      <button onclick="checkin('lelah')">😔 Capek</button>
+      <button onclick="checkin('takut')">😟 Takut</button>
+    </div>
+    <p id="checkin-result" class="result-text"></p>
+    <a href="interactive.html" class="back-button">⬅️ Kembali</a>
+  </div>
+
+  <audio id="checkin-sound" src="sounds/pop.mp3" preload="auto"></audio>
+  <script src="particles.js"></script>
+  <script>
+    const audio = document.getElementById('checkin-sound');
+    const output = document.getElementById('checkin-result');
+    function checkin(feel) {
+      const message = {
+        senang: 'Yayy! Aku ikut senang 💖',
+        sedih: 'Sini kita mainn, aku bantu kamu supaya sedihnya hilangg 💕',
+        rindu: 'Aku juga kangen banget sama kamu 😢💌',
+        lelah: 'Semangatt yaa, Istirahat yang cukuppp, aku sellu disini buat nyemangatin kamu kokk 🫂',
+        takut: 'Kamu takut yaa, jangan khawatir kamu pasti bisaa, aku selalu siap kok melindungi kamu 💪🏻'
+
+      };
+      output.style.animation = 'none';
+      output.offsetHeight;
+      output.style.animation = null; 
+      output.innerText = message[feel];
+      if (audio) audio.play();
+    }
+  </script>
+</body>
+</html>

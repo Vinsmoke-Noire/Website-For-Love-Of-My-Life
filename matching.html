@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Matching Game 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="matching-style.css">
+</head>
+<body>
+  <!-- Tombol Kembali yang Baru Ditambahkan -->
+  <a href="interactive.html" onclick="history.back()" class="back-btn">⬅️ Kembali</a>
+
+  <div class="game-container">
+    <h1>💕 Love Matching Game 💕</h1>
+    <div class="score-timer">
+      <span id="score">Score: 0</span>
+      <span id="timer">Time: 0s</span>
+    </div>
+    <div class="card-grid" id="cardGrid"></div>
+    <button onclick="startGame()" class="start-btn">Start Game</button>
+  </div>
+
+  <!-- Win Message Modal -->
+  <div id="winModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>You Win! 🥳</h2>
+      <p id="finalStats"></p>
+      <button onclick="startGame()" class="start-btn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="matching-script.js"></script>
+</body>
+</html>

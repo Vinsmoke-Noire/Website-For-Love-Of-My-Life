@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Fredoka One', cursive;
+  background: linear-gradient(135deg, #ffc1e3, #ffe9f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #555;
+  perspective: 1000px; /* Needed for 3D card flip */
+}
+
+.game-container {
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  padding: 25px;
+  background-color: rgba(255, 240, 246, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 182, 217, 0.6);
+  backdrop-filter: blur(5px);
+}
+
+h1 {
+    color: #ff70a6;
+    text-shadow: 2px 2px 0px #fff;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.card {
+  height: 70px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:not(.matched):not(.flipped):hover {
+    transform: translateY(-5px);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-front {
+  background: linear-gradient(135deg, #ffffff, #fff7fa);
+  color: #ff70a6;
+}
+
+.card-back {
+  background-color: #ffd1ea;
+  transform: rotateY(180deg);
+}
+
+
+.card.matched .card-back {
+  background-color: #a7f5b9; /* Greenish for correct match */
+  animation: pop 0.5s;
+}
+
+.card.wrong {
+    animation: shake 0.4s;
+}
+
+.score-timer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #e83e8c;
+}
+
+.start-btn {
+  background-color: #ff70a6;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: 'Fredoka One', cursive;
+  box-shadow: 0 4px 10px rgba(255, 112, 166, 0.5);
+  transition: all 0.2s ease-in-out;
+}
+
+.start-btn:hover {
+    background-color: #e83e8c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 112, 166, 0.7);
+}
+
+.start-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideIn 0.5s forwards;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal-content h2 {
+    color: #ff70a6;
+    margin-top: 0;
+}
+
+/* Keyframe Animations */
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0px); opacity: 1; }
+}
+
+/* ... (semua kode CSS sebelumnya tetap ada) ... */
+
+/* Keyframe Animations */
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0px); opacity: 1; }
+}
+
+/* Gaya untuk Tombol Kembali */
+.back-btn {
+  position: fixed; /* Tetap di posisi yang sama saat scroll */
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  color: #ff70a6;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100; /* Memastikan tombol di atas elemen lain */
+  transition: all 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 4px 12px rgba(255, 112, 166, 0.4);
+}

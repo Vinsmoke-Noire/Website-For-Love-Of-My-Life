@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cute Love Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="particle-container"></div>
+
+  <div class="center">
+    <h1>🎮 Temukan Miaww!</h1>
+    <p>Klik gambar Miaww yang tersembunyi di antara bunga!</p>
+    <div id="game-area"></div>
+    <p id="game-message" class="result-text"></p>
+    <a href="interactive.html" class="back-button">⬅️ Kembali</a>
+  </div>
+
+  <audio id="bunny-sound" src="sounds/found.mp3" preload="auto"></audio>
+  <script src="particles.js"></script>
+  <script>
+    const gameArea = document.getElementById('game-area');
+    const message = document.getElementById('game-message');
+    const sound = document.getElementById('bunny-sound');
+    const bunnyIndex = Math.floor(Math.random() * 12);
+
+    for (let i = 0; i < 12; i++) {
+      const el = document.createElement('img');
+      el.src = 'assets/flower.jpg';
+      el.className = 'game-item';
+      el.dataset.index = i;
+      el.onclick = () => {
+        message.style.animation = 'none';
+        message.offsetHeight;
+        message.style.animation = null; 
+        if (parseInt(el.dataset.index) === bunnyIndex) {
+          el.src = 'assets/flowercat.jpg';
+          el.style.transform = 'scale(1.2)'; // Efek pop
+          message.innerText = 'Yess, kamu nemu Miaww! 🐱💗';
+          if (sound) sound.play();
+        } else {
+          message.innerText = 'Bukan di sini, coba lagi 😝';
+          el.style.transform = 'translateX(5px)'; // Efek goyang
+          setTimeout(() => { el.style.transform = 'translateX(0)'; }, 200);
+        }
+      }
+      gameArea.appendChild(el);
+    }
+  </script>
+</body>
+</html>
